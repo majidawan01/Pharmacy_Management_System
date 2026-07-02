@@ -1,0 +1,225 @@
+﻿<Page x:Class="Pharmacy_Management_System.Views.ReturnsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F0F4F8">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Bar -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White" CornerRadius="10"
+                    BorderBrush="#E0E0E0" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="🔍" FontSize="16" Margin="14,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSearch" Grid.Column="1"
+                             Height="44" Padding="10,0,14,0"
+                             FontSize="14" BorderThickness="0"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             TextChanged="txtSearch_TextChanged"/>
+                </Grid>
+            </Border>
+
+            <!-- Type Filter -->
+            <Border Grid.Column="1" Background="White" CornerRadius="10"
+                    BorderBrush="#E0E0E0" BorderThickness="1"
+                    Margin="12,0,0,0">
+                <ComboBox x:Name="cmbTypeFilter" Height="44" Width="160"
+                          Padding="8,0" FontSize="13"
+                          BorderThickness="0" Background="Transparent"
+                          SelectionChanged="cmbTypeFilter_SelectionChanged">
+                    <ComboBoxItem Content="All" IsSelected="True"/>
+                    <ComboBoxItem Content="Customer Return"/>
+                    <ComboBoxItem Content="Company Return"/>
+                </ComboBox>
+            </Border>
+
+            <Button Grid.Column="2" Content="+ Add Return"
+                    Height="44" Padding="20,0"
+                    Background="#00838F" Foreground="White"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="12,0,0,0"
+                    Click="btnAddReturn_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background"
+                                        Value="#006064"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <!-- Stats Row -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="White" CornerRadius="10"
+                    Padding="16" Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="↩️" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtTotalReturns" Text="0"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#00838F"/>
+                        <TextBlock Text="Total Returns" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="White" CornerRadius="10"
+                    Padding="16" Margin="8,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="👤" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtCustomerReturns" Text="0"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#1565C0"/>
+                        <TextBlock Text="Customer Returns" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Background="White" CornerRadius="10"
+                    Padding="16" Margin="8,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🏭" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtCompanyReturns" Text="0"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#F57C00"/>
+                        <TextBlock Text="Company Returns" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Returns Table -->
+        <Border Grid.Row="2" Background="White" CornerRadius="12">
+            <DataGrid x:Name="dgReturns"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      HeadersVisibility="Column"
+                      BorderThickness="0"
+                      Background="White"
+                      RowBackground="White"
+                      AlternatingRowBackground="#F8F9FA"
+                      FontSize="13"
+                      SelectionMode="Single"
+                      CanUserAddRows="False"
+                      RowHeight="44">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F0F4F8"/>
+                        <Setter Property="Foreground" Value="#555555"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Height" Value="44"/>
+                        <Setter Property="Padding" Value="12,0"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Voucher No"
+                                        Binding="{Binding VoucherNo}"
+                                        Width="130"/>
+                    <DataGridTemplateColumn Header="Type" Width="130">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="12" Padding="8,3"
+                                        HorizontalAlignment="Left"
+                                        Margin="8,0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#E3F2FD"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Type}"
+                                                             Value="Company Return">
+                                                    <Setter Property="Background" Value="#FFF3E0"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock FontSize="11" FontWeight="SemiBold">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding Type}"/>
+                                                <Setter Property="Foreground" Value="#1565C0"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Type}"
+                                                                 Value="Company Return">
+                                                        <Setter Property="Foreground" Value="#F57C00"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Party Name"
+                                        Binding="{Binding PartyName}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="Amount (AFN)"
+                                        Binding="{Binding TotalAmount}"
+                                        Width="120"/>
+                    <DataGridTextColumn Header="Return Date"
+                                        Binding="{Binding ReturnDate}"
+                                        Width="130"/>
+                    <DataGridTextColumn Header="Notes"
+                                        Binding="{Binding Notes}"
+                                        Width="*"/>
+                    <DataGridTemplateColumn Header="Actions" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="🗑️" Width="32" Height="28"
+                                        Background="#FFEBEE" BorderThickness="0"
+                                        Cursor="Hand" Margin="8,0"
+                                        Tag="{Binding Id}"
+                                        Click="btnDelete_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Page>

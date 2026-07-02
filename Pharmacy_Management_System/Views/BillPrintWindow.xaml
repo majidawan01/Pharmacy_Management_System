@@ -1,0 +1,356 @@
+﻿<Window x:Class="Pharmacy_Management_System.Views.BillPrintWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bill Preview"
+        Height="700" Width="380"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="White">
+
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="pnlBill"
+                            Margin="10,8,10,8"
+                            Background="White">
+
+                    <!-- HEADER -->
+                    <TextBlock x:Name="txtPharmacyName"
+                               Text="SHAKIR IHSAN"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"/>
+
+                    <TextBlock Text="WHOLE SELLER"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Margin="0,1,0,0"/>
+
+                    <TextBlock x:Name="txtPharmacyAddress"
+                               Text="Laghman Hada, Gulab Sehat Plaza"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Margin="0,1,0,0"/>
+
+                    <TextBlock Text="+93770212223 | +93777740095"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Margin="0,1,0,0"/>
+
+                    <TextBlock x:Name="txtPharmacyPhone"
+                               Text="usman.fazli1000@gmail.com"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Margin="0,1,0,0"/>
+
+                    <!-- Top Border -->
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,6,0,0"/>
+
+                    <TextBlock Text="SALE INVOICE"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               Margin="0,3,0,3"/>
+
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,0,0,6"/>
+
+                    <!-- CUSTOMER INFO -->
+                    <Grid Margin="0,0,0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Left column -->
+                        <StackPanel Grid.Row="0" Grid.Column="0"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="Invoice No : "
+                                       FontSize="8"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                            <TextBlock x:Name="txtVoucherNo"
+                                       Text=""
+                                       FontSize="8"
+                                       Foreground="Black"/>
+                        </StackPanel>
+
+                        <!-- Right column -->
+                        <StackPanel Grid.Row="0" Grid.Column="1"
+                                    Orientation="Horizontal">
+                            <TextBlock Text="Date : "
+                                       FontSize="8"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                            <TextBlock x:Name="txtDate"
+                                       Text=""
+                                       FontSize="8"
+                                       Foreground="Black"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Orientation="Horizontal"
+                                    Margin="0,2,0,0">
+                            <TextBlock Text="Customer : "
+                                       FontSize="8"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                            <TextBlock x:Name="txtCustomer"
+                                       Text=""
+                                       FontSize="8"
+                                       Foreground="Black"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- TABLE HEADER LINE -->
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,0,0,0"/>
+
+                    <!-- ITEMS HEADER -->
+                    <Grid Margin="0,3,0,3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Medicine Name"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Foreground="Black"/>
+                        <TextBlock Grid.Column="1"
+                                   Text="Qty"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   TextAlignment="Center"/>
+                        <TextBlock Grid.Column="2"
+                                   Text="Price"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   TextAlignment="Right"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="Total"
+                                   FontSize="8"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   TextAlignment="Right"/>
+                    </Grid>
+
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,0,0,0"/>
+
+                    <!-- ITEMS LIST -->
+                    <ItemsControl x:Name="itemsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2,0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="35"/>
+                                        <ColumnDefinition Width="55"/>
+                                        <ColumnDefinition Width="55"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding MedicineName}"
+                                               FontSize="8"
+                                               Foreground="Black"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding Quantity}"
+                                               FontSize="8"
+                                               Foreground="Black"
+                                               TextAlignment="Center"/>
+                                    <TextBlock Grid.Column="2"
+                                               Text="{Binding Price,
+                                               StringFormat='{}{0:N0}'}"
+                                               FontSize="8"
+                                               Foreground="Black"
+                                               TextAlignment="Right"/>
+                                    <TextBlock Grid.Column="3"
+                                               Text="{Binding Total,
+                                               StringFormat='{}{0:N0}'}"
+                                               FontSize="8"
+                                               Foreground="Black"
+                                               TextAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,4,0,4"/>
+
+                    <!-- TOTALS -->
+                    <Grid HorizontalAlignment="Right"
+                          Width="160"
+                          Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Subtotal :"
+                                   FontSize="8"
+                                   Foreground="Black"/>
+                        <TextBlock x:Name="txtSubTotal"
+                                   Grid.Row="0" Grid.Column="1"
+                                   Text="0"
+                                   FontSize="8"
+                                   Foreground="Black"
+                                   TextAlignment="Right"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="Discount :"
+                                   FontSize="8"
+                                   Foreground="Black"
+                                   Margin="0,2,0,0"/>
+                        <TextBlock x:Name="txtDiscount"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   FontSize="8"
+                                   Foreground="Black"
+                                   TextAlignment="Right"
+                                   Margin="0,2,0,0"/>
+
+                        <Border Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                BorderBrush="Black"
+                                BorderThickness="0,1,0,0"
+                                Margin="0,3,0,3"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="Net Total :"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   Foreground="Black"/>
+                        <TextBlock x:Name="txtTotal"
+                                   Grid.Row="3" Grid.Column="1"
+                                   Text="0"
+                                   FontSize="9"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   TextAlignment="Right"/>
+                    </Grid>
+
+                    <!-- Paid -->
+                    <Grid HorizontalAlignment="Right"
+                          Width="160"
+                          Margin="0,2,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Paid :"
+                                   FontSize="8"
+                                   Foreground="Black"/>
+                        <TextBlock x:Name="txtPaid"
+                                   Grid.Column="1"
+                                   Text="0"
+                                   FontSize="8"
+                                   Foreground="Black"
+                                   TextAlignment="Right"/>
+                    </Grid>
+
+                    <Border BorderBrush="Black"
+                            BorderThickness="0,1,0,0"
+                            Margin="0,6,0,6"/>
+
+                    <!-- FOOTER -->
+                   
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- BUTTONS -->
+        <Grid Grid.Row="1" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="Close"
+                    Height="36"
+                    Background="#F5F5F5"
+                    Foreground="Black"
+                    FontSize="12"
+                    Margin="0,0,4,0"
+                    Click="btnClose_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Content="Print Invoice"
+                    Height="36"
+                    Background="#1565C0"
+                    Foreground="White"
+                    FontSize="12"
+                    FontWeight="Bold"
+                    Margin="4,0,0,0"
+                    Click="btnPrint_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="#0D47A1"
+                                BorderThickness="1">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

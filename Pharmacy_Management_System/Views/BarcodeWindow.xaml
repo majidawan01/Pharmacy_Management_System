@@ -1,0 +1,222 @@
+﻿<Window x:Class="Pharmacy_Management_System.Views.BarcodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Barcode Generator"
+        Height="650" Width="750"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        Background="#F0F4F8">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="🔖 Barcode Generator"
+                       FontSize="20" FontWeight="Bold" Foreground="#1A1A2E"/>
+            <TextBlock Text="Generate and print barcodes for medicines"
+                       FontSize="13" Foreground="#888888" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel -->
+            <Border Grid.Column="0" Background="White" CornerRadius="12"
+                    Padding="24" Margin="0,0,12,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+
+                        <!-- Medicine Search -->
+                        <TextBlock Text="Search Medicine" FontSize="12"
+                                   Foreground="#555" Margin="0,0,0,6"
+                                   FontWeight="Medium"/>
+                        <Border Background="White"
+                                BorderBrush="#E0E0E0"
+                                BorderThickness="1" CornerRadius="8"
+                                Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBox x:Name="txtMedicineSearch"
+                                         Grid.Row="0"
+                                         Height="40" Padding="12,0"
+                                         FontSize="13" BorderThickness="0"
+                                         Background="Transparent"
+                                         VerticalContentAlignment="Center"
+                                         TextChanged="txtMedicineSearch_TextChanged"
+                                         KeyDown="txtMedicineSearch_KeyDown"/>
+                                <Border Grid.Row="1"
+                                        BorderBrush="#E0E0E0"
+                                        BorderThickness="0,1,0,0"
+                                        Background="White">
+                                    <ListBox x:Name="lstMedicineSuggestions"
+                                             MaxHeight="150"
+                                             Visibility="Collapsed"
+                                             SelectionChanged="lstMedicineSuggestions_SelectionChanged"
+                                             BorderThickness="0"
+                                             Background="White"
+                                             FontSize="13"
+                                             Padding="4"
+                                             KeyDown="lstMedicineSuggestions_KeyDown"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <!-- Barcode Text -->
+                        <TextBlock Text="Barcode Text" FontSize="12"
+                                   Foreground="#555" Margin="0,0,0,6"
+                                   FontWeight="Medium"/>
+                        <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                CornerRadius="8" Background="#FAFAFA"
+                                Margin="0,0,0,16">
+                            <TextBox x:Name="txtBarcodeText" Height="40"
+                                     Padding="12,0" FontSize="13"
+                                     BorderThickness="0" Background="Transparent"
+                                     VerticalContentAlignment="Center"/>
+                        </Border>
+
+                        <!-- Barcode Type -->
+                        <TextBlock Text="Barcode Type" FontSize="12"
+                                   Foreground="#555" Margin="0,0,0,6"
+                                   FontWeight="Medium"/>
+                        <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                CornerRadius="8" Background="#FAFAFA"
+                                Margin="0,0,0,16">
+                            <ComboBox x:Name="cmbBarcodeType" Height="40"
+                                      Padding="8,0" FontSize="13"
+                                      BorderThickness="0" Background="Transparent"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="CODE_128"/>
+                                <ComboBoxItem Content="QR_CODE"/>
+                                <ComboBoxItem Content="CODE_39"/>
+                            </ComboBox>
+                        </Border>
+
+                        <!-- Number of Copies -->
+                        <TextBlock Text="Number of Copies" FontSize="12"
+                                   Foreground="#555" Margin="0,0,0,6"
+                                   FontWeight="Medium"/>
+                        <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                CornerRadius="8" Background="#FAFAFA"
+                                Margin="0,0,0,24">
+                            <TextBox x:Name="txtCopies" Height="40"
+                                     Padding="12,0" FontSize="13"
+                                     BorderThickness="0" Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Text="1"/>
+                        </Border>
+
+                        <!-- Generate Button -->
+                        <Button Content="🔖 Generate Barcode"
+                                Height="46" Background="#1565C0"
+                                Foreground="White" FontSize="14"
+                                FontWeight="SemiBold" Cursor="Hand"
+                                Margin="0,0,0,12"
+                                Click="btnGenerate_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background"
+                                                    Value="#0D47A1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Print Button -->
+                        <Button Content="🖨️ Print Barcode"
+                                Height="46" Background="#2E7D32"
+                                Foreground="White" FontSize="14"
+                                FontWeight="SemiBold" Cursor="Hand"
+                                Click="btnPrint_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background"
+                                                    Value="#1B5E20"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Error -->
+                        <TextBlock x:Name="txtError" Foreground="#E24B4A"
+                                   FontSize="12" Visibility="Collapsed"
+                                   Margin="0,12,0,0" TextWrapping="Wrap"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Right Panel - Preview -->
+            <Border Grid.Column="1" Background="White" CornerRadius="12"
+                    Padding="24" Margin="12,0,0,0">
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <TextBlock Text="Barcode Preview" FontSize="14"
+                               FontWeight="SemiBold" Foreground="#1A1A2E"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+
+                    <Border Background="White" BorderBrush="#E0E0E0"
+                            BorderThickness="1" CornerRadius="8"
+                            Padding="20" HorizontalAlignment="Center">
+                        <StackPanel>
+                            <Image x:Name="imgBarcode"
+                                   Width="220" Height="110"
+                                   Stretch="Uniform"/>
+                            <TextBlock x:Name="txtBarcodeLabel"
+                                       Text="" FontSize="12"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#333333"
+                                       Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock x:Name="txtMedicineName"
+                               Text="" FontSize="14"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Foreground="#1565C0"
+                               Margin="0,16,0,4"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+
+                    <TextBlock x:Name="txtMedicinePrice"
+                               Text="" FontSize="13"
+                               HorizontalAlignment="Center"
+                               Foreground="#333333"
+                               FontWeight="SemiBold"
+                               TextAlignment="Center"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

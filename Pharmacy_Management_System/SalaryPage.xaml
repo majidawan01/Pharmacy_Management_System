@@ -1,0 +1,186 @@
+﻿<Page x:Class="Pharmacy_Management_System.Views.SalaryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F0F4F8">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Bar -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White" CornerRadius="10"
+                    BorderBrush="#E0E0E0" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="🔍" FontSize="16" Margin="14,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtSearch" Grid.Column="1"
+                             Height="44" Padding="10,0,14,0"
+                             FontSize="14" BorderThickness="0"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             TextChanged="txtSearch_TextChanged"/>
+                </Grid>
+            </Border>
+
+            <!-- Month Filter -->
+            <Border Grid.Column="1" Background="White" CornerRadius="10"
+                    BorderBrush="#E0E0E0" BorderThickness="1"
+                    Margin="12,0,0,0">
+                <ComboBox x:Name="cmbMonth" Height="44" Width="160"
+                          Padding="8,0" FontSize="13"
+                          BorderThickness="0" Background="Transparent"
+                          SelectionChanged="cmbMonth_SelectionChanged"/>
+            </Border>
+
+            <Button Grid.Column="2" Content="+ Pay Salary"
+                    Height="44" Padding="20,0"
+                    Background="#1565C0" Foreground="White"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="12,0,0,0"
+                    Click="btnPaySalary_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background"
+                                        Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <!-- Stats Row -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="White" CornerRadius="10"
+                    Padding="16" Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="💵" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtTotalPaid" Text="AFN 0"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#2E7D32"/>
+                        <TextBlock Text="Total Paid" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="White" CornerRadius="10"
+                    Padding="16" Margin="8,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="👥" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtTotalRecords" Text="0"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#1565C0"/>
+                        <TextBlock Text="Total Records" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Background="White" CornerRadius="10"
+                    Padding="16" Margin="8,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="📅" FontSize="24" Margin="0,0,12,0"
+                               VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock x:Name="txtCurrentMonth" Text=""
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#F57C00"/>
+                        <TextBlock Text="Current Month" FontSize="12"
+                                   Foreground="#888888"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Salary Table -->
+        <Border Grid.Row="2" Background="White" CornerRadius="12">
+            <DataGrid x:Name="dgSalaries"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      HeadersVisibility="Column"
+                      BorderThickness="0"
+                      Background="White"
+                      RowBackground="White"
+                      AlternatingRowBackground="#F8F9FA"
+                      FontSize="13"
+                      SelectionMode="Single"
+                      CanUserAddRows="False"
+                      RowHeight="44">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F0F4F8"/>
+                        <Setter Property="Foreground" Value="#555555"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Height" Value="44"/>
+                        <Setter Property="Padding" Value="12,0"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Employee Name"
+                                        Binding="{Binding EmployeeName}"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="Month"
+                                        Binding="{Binding Month}"
+                                        Width="130"/>
+                    <DataGridTextColumn Header="Amount (AFN)"
+                                        Binding="{Binding Amount}"
+                                        Width="130"/>
+                    <DataGridTextColumn Header="Paid Date"
+                                        Binding="{Binding PaidDate}"
+                                        Width="130"/>
+                    <DataGridTextColumn Header="Notes"
+                                        Binding="{Binding Notes}"
+                                        Width="*"/>
+                    <DataGridTemplateColumn Header="Actions" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="🗑️" Width="32" Height="28"
+                                        Background="#FFEBEE" BorderThickness="0"
+                                        Cursor="Hand" Margin="8,0"
+                                        Tag="{Binding Id}"
+                                        Click="btnDelete_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Page>

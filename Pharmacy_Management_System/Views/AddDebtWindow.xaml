@@ -1,0 +1,143 @@
+﻿<Window x:Class="Pharmacy_Management_System.Views.AddDebtWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Debt"
+        Height="500" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F0F4F8">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock x:Name="txtTitle" Text="Add New Debt"
+                       FontSize="20" FontWeight="Bold" Foreground="#1A1A2E"/>
+            <TextBlock x:Name="txtSubTitle"
+                       Text="Fill in the debt details below"
+                       FontSize="13" Foreground="#888888" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Form -->
+        <Border Grid.Row="1" Background="White" CornerRadius="12" Padding="24">
+            <StackPanel x:Name="pnlAddDebt">
+
+                <!-- Customer Name -->
+                <TextBlock Text="Customer Name *" FontSize="12"
+                           Foreground="#555" Margin="0,0,0,6"/>
+                <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                        CornerRadius="8" Background="#FAFAFA"
+                        Margin="0,0,0,16">
+                    <TextBox x:Name="txtCustomerName" Height="40"
+                             Padding="12,0" FontSize="13"
+                             BorderThickness="0" Background="Transparent"
+                             VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Phone -->
+                <TextBlock Text="Phone Number" FontSize="12"
+                           Foreground="#555" Margin="0,0,0,6"/>
+                <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                        CornerRadius="8" Background="#FAFAFA"
+                        Margin="0,0,0,16">
+                    <TextBox x:Name="txtPhone" Height="40"
+                             Padding="12,0" FontSize="13"
+                             BorderThickness="0" Background="Transparent"
+                             VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Total Amount -->
+                <TextBlock Text="Total Amount (AFN) *" FontSize="12"
+                           Foreground="#555" Margin="0,0,0,6"/>
+                <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                        CornerRadius="8" Background="#FAFAFA"
+                        Margin="0,0,0,16">
+                    <TextBox x:Name="txtTotalAmount" Height="40"
+                             Padding="12,0" FontSize="13"
+                             BorderThickness="0" Background="Transparent"
+                             VerticalContentAlignment="Center" Text="0"/>
+                </Border>
+
+                <!-- Paid Amount -->
+                <TextBlock Text="Paid Amount (AFN)" FontSize="12"
+                           Foreground="#555" Margin="0,0,0,6"/>
+                <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                        CornerRadius="8" Background="#FAFAFA"
+                        Margin="0,0,0,16">
+                    <TextBox x:Name="txtPaidAmount" Height="40"
+                             Padding="12,0" FontSize="13"
+                             BorderThickness="0" Background="Transparent"
+                             VerticalContentAlignment="Center" Text="0"/>
+                </Border>
+
+                <!-- Notes -->
+                <TextBlock Text="Notes" FontSize="12"
+                           Foreground="#555" Margin="0,0,0,6"/>
+                <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                        CornerRadius="8" Background="#FAFAFA">
+                    <TextBox x:Name="txtNotes" Height="50"
+                             Padding="12,8" FontSize="13"
+                             BorderThickness="0" Background="Transparent"
+                             TextWrapping="Wrap"/>
+                </Border>
+
+                <TextBlock x:Name="txtError" Foreground="#E24B4A"
+                           FontSize="12" Visibility="Collapsed"
+                           Margin="0,8,0,0" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="2" Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Cancel" Height="46"
+                    Background="#F5F5F5" Foreground="#555555"
+                    FontSize="14" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,8,0"
+                    Click="btnCancel_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Grid.Column="1" x:Name="btnSave"
+                    Content="Save Debt" Height="46"
+                    Background="#C62828" Foreground="White"
+                    FontSize="14" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="8,0,0,0"
+                    Click="btnSave_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background"
+                                        Value="#B71C1C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

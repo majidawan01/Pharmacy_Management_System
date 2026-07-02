@@ -1,0 +1,478 @@
+﻿<Page x:Class="Pharmacy_Management_System.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F0F4F8">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24">
+
+            <!-- Language Section -->
+            <Border Background="White" CornerRadius="12"
+        Padding="24" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="🌐 Language Settings"
+                   FontSize="16" FontWeight="Bold"
+                   Foreground="#1A1A2E" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Select Application Language"
+                   FontSize="12" Foreground="#555"
+                   Margin="0,0,0,10"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnLangEn" Content="🇺🇸 English"
+                    Height="44" Padding="20,0"
+                    Background="#1565C0" Foreground="White"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,8,0"
+                    Click="btnLanguage_Click" Tag="en">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnLangPs" Content="🇦🇫 پښتو"
+                    Height="44" Padding="20,0"
+                    Background="#F5F5F5" Foreground="#333"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,8,0"
+                    Click="btnLanguage_Click" Tag="ps">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnLangDa" Content="🇦🇫 دری"
+                    Height="44" Padding="20,0"
+                    Background="#F5F5F5" Foreground="#333"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,8,0"
+                    Click="btnLanguage_Click" Tag="da">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnLangUr" Content="🇵🇰 اردو"
+                    Height="44" Padding="20,0"
+                    Background="#F5F5F5" Foreground="#333"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,8,0"
+                    Click="btnLanguage_Click" Tag="ur">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnLangAr" Content="🇸🇦 العربية"
+                    Height="44" Padding="20,0"
+                    Background="#F5F5F5" Foreground="#333"
+                    FontSize="13" FontWeight="SemiBold"
+                    Cursor="Hand" Margin="0,0,0,0"
+                    Click="btnLanguage_Click" Tag="ar">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock x:Name="txtLangStatus"
+                   Text="Current Language: English"
+                   FontSize="12" Foreground="#2E7D32"
+                   Margin="0,12,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Pharmacy Info Section -->
+            <Border Background="White" CornerRadius="12"
+                    Padding="24" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="🏪 Pharmacy Information"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#1A1A2E" Margin="0,0,0,20"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Pharmacy Name -->
+                        <StackPanel Grid.Row="0" Grid.Column="0"
+                                    Margin="0,0,12,16">
+                            <TextBlock Text="Pharmacy Name" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <TextBox x:Name="txtPharmacyName" Height="40"
+                                         Padding="12,0" FontSize="13"
+                                         BorderThickness="0" Background="Transparent"
+                                         VerticalContentAlignment="Center"
+                                         Text="My Pharmacy" TextChanged="txtPharmacyName_TextChanged"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Owner Name -->
+                        <StackPanel Grid.Row="0" Grid.Column="1"
+                                    Margin="12,0,0,16">
+                            <TextBlock Text="Owner Name" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <TextBox x:Name="txtOwnerName" Height="40"
+                                         Padding="12,0" FontSize="13"
+                                         BorderThickness="0" Background="Transparent"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Phone -->
+                        <StackPanel Grid.Row="1" Grid.Column="0"
+                                    Margin="0,0,12,16">
+                            <TextBlock Text="Phone Number" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <TextBox x:Name="txtPhone" Height="40"
+                                         Padding="12,0" FontSize="13"
+                                         BorderThickness="0" Background="Transparent"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Address -->
+                        <StackPanel Grid.Row="1" Grid.Column="1"
+                                    Margin="12,0,0,16">
+                            <TextBlock Text="Address" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <TextBox x:Name="txtAddress" Height="40"
+                                         Padding="12,0" FontSize="13"
+                                         BorderThickness="0" Background="Transparent"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- License No -->
+                        <StackPanel Grid.Row="2" Grid.Column="0"
+                                    Margin="0,0,12,16">
+                            <TextBlock Text="License Number" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <TextBox x:Name="txtLicense" Height="40"
+                                         Padding="12,0" FontSize="13"
+                                         BorderThickness="0" Background="Transparent"
+                                         VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Currency -->
+                        <StackPanel Grid.Row="2" Grid.Column="1"
+                                    Margin="12,0,0,16">
+                            <TextBlock Text="Currency" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <ComboBox x:Name="cmbCurrency" Height="40"
+                                          Padding="8,0" FontSize="13"
+                                          BorderThickness="0" Background="Transparent"
+                                          SelectedIndex="0">
+                                    <ComboBoxItem Content="AFN - Afghan Afghani"/>
+                                    <ComboBoxItem Content="USD - US Dollar"/>
+                                    <ComboBoxItem Content="PKR - Pakistani Rupee"/>
+                                    <ComboBoxItem Content="IRR - Iranian Rial"/>
+                                </ComboBox>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <Button Content="💾 Save Pharmacy Info"
+                            Height="44" Padding="24,0"
+                            HorizontalAlignment="Left"
+                            Background="#1565C0" Foreground="White"
+                            FontSize="13" FontWeight="SemiBold"
+                            Cursor="Hand" Click="btnSavePharmacy_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background"
+                                                Value="#0D47A1"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <!-- Change Password Section -->
+            <Border Background="White" CornerRadius="12"
+                    Padding="24" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="🔐 Change Password"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#1A1A2E" Margin="0,0,0,20"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <TextBlock Text="Current Password" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <PasswordBox x:Name="txtCurrentPass" Height="40"
+                                             Padding="12,0" FontSize="13"
+                                             BorderThickness="0" Background="Transparent"
+                                             VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="6,0,6,0">
+                            <TextBlock Text="New Password" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <PasswordBox x:Name="txtNewPass" Height="40"
+                                             Padding="12,0" FontSize="13"
+                                             BorderThickness="0" Background="Transparent"
+                                             VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="12,0,0,0">
+                            <TextBlock Text="Confirm Password" FontSize="12"
+                                       Foreground="#555" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1"
+                                    CornerRadius="8" Background="#FAFAFA">
+                                <PasswordBox x:Name="txtConfirmPass" Height="40"
+                                             Padding="12,0" FontSize="13"
+                                             BorderThickness="0" Background="Transparent"
+                                             VerticalContentAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock x:Name="txtPassError" Foreground="#E24B4A"
+                               FontSize="12" Visibility="Collapsed"
+                               Margin="0,8,0,8" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="txtPassSuccess" Foreground="#2E7D32"
+                               FontSize="12" Visibility="Collapsed"
+                               Margin="0,8,0,8" Text="Password changed successfully!"/>
+
+                    <Button Content="🔐 Change Password"
+                            Height="44" Padding="24,0"
+                            HorizontalAlignment="Left"
+                            Background="#7B1FA2" Foreground="White"
+                            FontSize="13" FontWeight="SemiBold"
+                            Cursor="Hand" Margin="0,16,0,0"
+                            Click="btnChangePassword_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background"
+                                                Value="#4A148C"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <!-- Database Backup Section -->
+            <Border Background="White" CornerRadius="12"
+                    Padding="24" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="💾 Database Backup"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#1A1A2E" Margin="0,0,0,8"/>
+                    <TextBlock Text="Create a backup of your pharmacy database to keep your data safe."
+                               FontSize="13" Foreground="#888888"
+                               Margin="0,0,0,20"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="#E8F5E9"
+                                CornerRadius="10" Padding="16"
+                                Margin="0,0,8,0">
+                            <StackPanel>
+                                <TextBlock Text="💾 Create Backup"
+                                           FontSize="14" FontWeight="Bold"
+                                           Foreground="#2E7D32"/>
+                                <TextBlock Text="Save a copy of your database"
+                                           FontSize="12" Foreground="#555"
+                                           Margin="0,4,0,12"/>
+                                <Button Content="Create Backup Now"
+                                        Height="40" Background="#2E7D32"
+                                        Foreground="White" FontSize="13"
+                                        FontWeight="SemiBold" Cursor="Hand"
+                                        HorizontalAlignment="Left"
+                                        Padding="16,0"
+                                        Click="btnCreateBackup_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Background="#E3F2FD"
+                                CornerRadius="10" Padding="16"
+                                Margin="8,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="📂 Restore Backup"
+                                           FontSize="14" FontWeight="Bold"
+                                           Foreground="#1565C0"/>
+                                <TextBlock Text="Restore from a backup file"
+                                           FontSize="12" Foreground="#555"
+                                           Margin="0,4,0,12"/>
+                                <Button Content="Restore Backup"
+                                        Height="40" Background="#1565C0"
+                                        Foreground="White" FontSize="13"
+                                        FontWeight="SemiBold" Cursor="Hand"
+                                        HorizontalAlignment="Left"
+                                        Padding="16,0"
+                                        Click="btnRestoreBackup_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <TextBlock x:Name="txtBackupStatus" FontSize="12"
+                               Margin="0,12,0,0" Visibility="Collapsed"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- System Info Section -->
+            <Border Background="White" CornerRadius="12" Padding="24">
+                <StackPanel>
+                    <TextBlock Text="ℹ️ System Information"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#1A1A2E" Margin="0,0,0,16"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="#F0F4F8"
+                                CornerRadius="10" Padding="16" Margin="0,0,8,0">
+                            <StackPanel>
+                                <TextBlock Text="Version" FontSize="12"
+                                           Foreground="#888888"/>
+                                <TextBlock Text="v1.0.0" FontSize="18"
+                                           FontWeight="Bold" Foreground="#1565C0"
+                                           Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Background="#F0F4F8"
+                                CornerRadius="10" Padding="16" Margin="4,0,4,0">
+                            <StackPanel>
+                                <TextBlock Text="Developer" FontSize="12"
+                                           Foreground="#888888"/>
+                                <TextBlock Text="Afghan Cosmos" FontSize="18"
+                                           FontWeight="Bold" Foreground="#1565C0"
+                                           Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Background="#F0F4F8"
+                                CornerRadius="10" Padding="16" Margin="8,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Database" FontSize="12"
+                                           Foreground="#888888"/>
+                                <TextBlock Text="SQLite" FontSize="18"
+                                           FontWeight="Bold" Foreground="#1565C0"
+                                           Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
