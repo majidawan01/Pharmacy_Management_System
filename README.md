@@ -35,4 +35,15 @@ This project demonstrates practical experience in exactly the kind of system man
 - **Offline desktop operation** with a local database (no cloud dependency)
 - **Multi-module business software** — inventory, accounts, employees, and reports in one system
 
+Screenshots
+
+Login / Admin
+<img width="1359" height="761" alt="image" src="https://github.com/user-attachments/assets/bcd67003-bf72-4345-b213-5d561860209d" />
+
+Dashboard
+
+<img width="1366" height="768" alt="WhatsApp Image 2026-07-05 at 6 41 57 PM" src="https://github.com/user-attachments/assets/47368b83-0b81-4952-a7ed-1e73706efebc" />
+
+
+
 
